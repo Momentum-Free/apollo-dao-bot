@@ -49,6 +49,7 @@ client.once('ready', async () => {
 			},
 		],
 	});
+	const perms = process.env.ALLOWED_USERS.split(',').map(user => { return { id: user, type: 'USER', permission: true };}).concat(process.env.ALLOWED_ROLES.split(',').map(user => { return { id: user, type: 'ROLE', permission: true };}));
 
 	const global_commands = [];
 
@@ -61,6 +62,7 @@ client.once('ready', async () => {
 
 		if (command.description) data.description = command.description;
 		if (command.type) data.type = command.type;
+		data.defaultPermission = false;
 
 		if (command.options) {
 			command.options.forEach(o => { if (o.name === 'command') o['choices'] = global_commands.map((gc) => {return { 'name': gc, 'value' : gc };});});
@@ -68,7 +70,11 @@ client.once('ready', async () => {
 		}
 
 		command.guilds?.forEach(async (guildKey) => {
-			await client.guilds.cache.get(guildKey)?.commands.create(data);
+			const guild = await client.guilds.cache.get(guildKey);
+			const cmd = await guild?.commands.create(data);
+			await guild?.commands.permissions.set({
+				command: cmd.id, permissions: perms,
+			});
 			console.log(`Registered ${command.name} on a specific guild! [${guildKey}]`);
 		});
 	});
