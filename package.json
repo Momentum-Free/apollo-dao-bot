@@ -1,0 +1,30 @@
+{
+  "name": "apollo-dao-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for Apollo DAO (Voting, competitions, etc.);",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Momentum-Free/apollo-dao-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Momentum-Free/apollo-dao-bot/issues"
+  },
+  "homepage": "https://github.com/Momentum-Free/apollo-dao-bot#readme",
+  "dependencies": {
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.12"
+  }
+}
