@@ -44,8 +44,8 @@ client.once('ready', async () => {
 	client.user.setPresence({
 		activities: [
 			{
-				name: 'stuff',
-				type: 'WATCHING',
+				name: 'with high yields 📈',
+				type: 'PLAYING',
 			},
 		],
 	});
